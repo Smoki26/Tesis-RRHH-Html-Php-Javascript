@@ -1,0 +1,44 @@
+<?php
+Class Estudio{
+    private $conn;
+    private $estu;
+
+public function __construct(){
+    require_once("../models/Conexion.php");
+    $this->conn = Conexion::conectar();
+    $this->estu = array();
+}
+
+public function get_Estudio(){
+    $datos = mysqli_query($this->conn,"SELECT Est.* FROM estudio as Est, legajo as L WHERE Est.idestudios = L.estudio_idestudio");
+    $this->estu = $datos;
+    ($this->conn)->close();     
+    
+    return $this->estu;
+}
+
+public function get_Estudio_Sumas(){
+   /* $datos = mysqli_query($this->conn,"
+            SELECT 
+            SUM(primario) AS primario,
+            SUM(secundario) AS secundario ,
+            SUM(terciario_universitario) AS terciario_universitario
+            FROM estudio
+        ");*/
+        $datos = mysqli_query($this->conn,"
+            SELECT 
+            primario ,
+            secundario ,
+            terciario_universitario 
+            FROM estudio
+        ");
+    $this->estu = $datos;
+    ($this->conn)->close();     
+    
+    return $this->estu;
+}
+
+}
+
+
+?>

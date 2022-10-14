@@ -17,6 +17,25 @@ public function get_Calificaion(){
     return $this->calf;
 }
 
+public function get_Calificaion_Promedio(){
+    $datos = mysqli_query($this->conn,"
+        
+            SELECT 
+            avg(puntualidad) AS puntualidad, 
+            avg(compañerismo) AS compañerismo,
+            avg(presentacion_personal) AS presentacion_personal,
+             avg(cumplimiento_normas) AS cumplimiento_normas,
+             avg(aplicacion_procesos_trabajo) AS aplicacion_procesos,
+             avg(responsabilidad) AS responsabilidad,
+             avg(iniciativa) AS iniciativa
+              FROM calificacion
+        ");
+    $this->calf = $datos;
+    ($this->conn)->close();     
+    
+    return $this->calf;
+}
+
 }
 
 
