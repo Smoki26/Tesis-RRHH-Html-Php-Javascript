@@ -18,18 +18,11 @@ public function get_Estudio(){
 }
 
 public function get_Estudio_Sumas(){
-   /* $datos = mysqli_query($this->conn,"
+    $datos = mysqli_query($this->conn,"
             SELECT 
-            SUM(primario) AS primario,
-            SUM(secundario) AS secundario ,
-            SUM(terciario_universitario) AS terciario_universitario
-            FROM estudio
-        ");*/
-        $datos = mysqli_query($this->conn,"
-            SELECT 
-            primario ,
-            secundario ,
-            terciario_universitario 
+            AVG(primario) AS primario,
+            AVG(secundario) AS secundario ,
+            AVG(terciario_universitario) AS terciario_universitario
             FROM estudio
         ");
     $this->estu = $datos;

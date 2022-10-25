@@ -15,6 +15,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="../views/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../views/dist/css/adminlte.min.css">
+
+  
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -50,7 +52,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <section class="content">
     <div>
       <h1>&nbsp;&nbsp;<i class="fa fa fa-users"></i> Puestos &nbsp;
-        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalFormNuevoPersona"><i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo</button>
+        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalFormNuevoPuesto"><i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo</button>
 
       </h1>
       <br>
@@ -84,11 +86,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <td><?php echo $row['id_puesto'] ?></td>
                     <td><?php echo $row['total'] ?></td>
                     <td><?php echo $row['nombre_puesto'] ?></td>
-                    <td>Robotica</td>
+                    <td><?php echo $row['nombre_habilidad'] ?></td>
                     <td class="col-1"> 
                       <div>
                         <!-- <button class="btn btn-secondary btn-xs btnPermisosRol" rl="'1'" title="Permisos" type="button" data-toggle="modal" data-target="#modalFormActualizarPersona"><i class="fa fa-unlock-alt"></i></button> -->
-                        <button class="btn btn-primary btn-xs btnEditRol" rl="'1'" title="Editar" type="button" data-toggle="modal" data-target="#modalFormActualizarPersona"><i class="fa fa-pencil-alt"></i></button>
+                        <button class="btn btn-primary btn-xs btnEditRol" rl="'1'" title="Editar" type="button" data-toggle="modal" data-target="#modalFormActualizarPuesto"><i class="fa fa-pencil-alt"></i></button>
                         <button class="btn btn-danger btn-xs btnDelRol" rl="'1'" title="Eliminar"><i class="fa fa-trash"></i></button>
                       </div>
                   </td>
@@ -126,6 +128,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div><!-- /.container-fluid -->
     </div> <!-- /.content-header -->
   </div><!-- /.content-wrapper -->
+  
   
   <div id="footer"></div>
   
@@ -177,6 +180,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   });
 </script>
 
+<?php
+include("../views/Tablas_Ref/opciones/new-puesto.php");
+include("../views/Tablas_Ref/opciones/edit-puesto.php");
+
+?>
 
 
 </body>

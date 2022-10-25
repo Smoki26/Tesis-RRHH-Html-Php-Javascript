@@ -65,18 +65,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <div class="card card-primary card-outline card-outline-tabs">
               <div class="card-header p-0 border-bottom-0">
-              <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Habillidades Balandas</a>
+                    <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Area Chart</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Calificaciones</a>
+                    <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Donut Chart</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Estudios</a>
+                    <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Pie Chart</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">Hab Duras/Blandas</a>
+                    <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">Bar Chart</a>
                   </li>
                 </ul>
               </div>
@@ -86,7 +86,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                      
                         <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">Habillidades Balandas</h3>
+                                    <h3 class="card-title">Area Chart</h3>
 
                                     <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -111,7 +111,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- DONUT CHART -->
                         <div class="card card-danger">
                             <div class="card-header">
-                                <h3 class="card-title">Calificaciones</h3>
+                                <h3 class="card-title">Donut Chart</h3>
 
                                 <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -129,16 +129,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
 
                   </div>
-
-
                   <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
 
-
-                  
                                 <!-- PIE CHART -->
                         <div class="card card-danger">
                             <div class="card-header">
-                                <h3 class="card-title">Estudios</h3>
+                                <h3 class="card-title">Pie Chart</h3>
 
                                 <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -152,48 +148,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="card-body">
                                 <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                             </div>
-
-                            
-                          <div class="row" style="justify-content: center;"> 
-                                    <?php 
-                                    $aux_parte;
-                                    foreach($row_est as $k => $v){
-                                  echo '<div class="col-md-3 col-sm-6 col-12">
-                                        <div class="info-box">';
-                                      switch($v){
-                                        case 0: $aux_parte = '<span class="info-box-icon bg-danger"><i class="fas fa-times"></i></span>
-                                                                <div class="info-box-content">
-                                                              <span class="info-box-text">' ;break;
-                                        case 1: $aux_parte = '<span class="info-box-icon bg-success"><i class="icon fas fa-check"></i></span>
-                                                                <div class="info-box-content">
-                                                              <span class="info-box-text">' ;break;
-                                      }
-                                      echo $aux_parte.$k."</span>";
-                                      $aux_parte = "";
-
-                                      echo '</div>
-                                      <!-- /.info-box-content -->
-                                    </div>
-                                    <!-- /.info-box -->
-                                  </div>';
-                                    }
-                                      ?>
-                                  </div>
-
-
                         <!-- /.card-body -->
                         </div>
-                    <!-- /.card-danger -->
+
                   </div>
-                   <!-- /.tab-pane -->
-
-
                   <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
                      
                                 <!-- BAR CHART -->
                         <div class="card card-success">
                                 <div class="card-header">
-                                    <h3 class="card-title">Hab Duras/Blandas</h3>
+                                    <h3 class="card-title">Bar Chart</h3>
 
                                     <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -421,25 +385,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
     var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
 
 
-    var pieData        =  {
-    
-    labels: [
-      'Completados',
-      'Incompleto'
-               
-    ],
-    datasets: [
-      {
-        data: [
+    var pieData        = {
+      labels: [
+          'primario',
+          'secundario',
+          'terciario o universitario'
+          
+      ],
+      datasets: [
+        {
+          data: [
 
-        
-        <?php echo intval((array_sum($row_est)/3)*100); ?>,
-        <?php echo (100 - intval((array_sum($row_est)/3)*100)); ?>,
-        ],
-        backgroundColor : ['#00c0ef', '#3c8dbc', '#d2d6de'],
-      }
-    ]
-  }
+          
+          <?php echo 100*(number_format($row_est['primario'], 2)); ?>,
+          <?php echo 100*(number_format($row_est['secundario'], 2)); ?>,
+          <?php echo 100*(number_format($row_est['terciario_universitario'], 2)); ?>
+          ],
+          backgroundColor : ['#00c0ef', '#3c8dbc', '#d2d6de'],
+        }
+      ]
+    }
 
     var pieOptions     = {
       maintainAspectRatio : false,

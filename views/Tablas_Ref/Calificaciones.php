@@ -50,7 +50,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <section class="content">
     <div>
     <h1>&nbsp;&nbsp;<i class="fa fa fa-users"></i> Calificaciones &nbsp;
-      <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalFormNuevoPersona"><i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo</button>
+      <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalFormNuevoCalf"><i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo</button>
 
     </h1>
     <br>
@@ -78,8 +78,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tbody>
 
                 <?php
+                
                 while($row = $arr->fetch_assoc()){
+            
                 ?>
+
+                <?php
+                  
+                  $aux_parte;
+                  //foreach($row_est as $k => $v){
+                    ?>
                   <tr>
                     <td><?php echo $row['legajo_id_legajo'] ?></td>
                     <td >
@@ -97,13 +105,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <td class="col-1"> 
                       <div>
                         <!-- <button class="btn btn-secondary btn-xs btnPermisosRol" rl="'1'" title="Permisos" type="button" data-toggle="modal" data-target="#modalFormActualizarPersona"><i class="fa fa-unlock-alt"></i></button> -->
-                        <button class="btn btn-primary btn-xs btnEditRol" rl="'1'" title="Editar" type="button" data-toggle="modal" data-target="#modalFormActualizarPersona"><i class="fa fa-pencil-alt"></i></button>
-                        <button class="btn btn-danger btn-xs btnDelRol" rl="'1'" title="Eliminar"><i class="fa fa-trash"></i></button>
+                        <button class="btn btn-primary btn-xs btnEditRol" id="btnActu" rl="'1'" title="Editar" type="button" data-toggle="modal" data-target="#modalFormActualizarCalf" data-legajo=<?php echo $row['legajo_id_legajo'] ?> ><i class="fa fa-pencil-alt"></i></button>
+                        <button class="btn btn-danger btn-xs btnDelRol" id="btnElim" rl="'1'" title="Eliminar"><i class="fa fa-trash"></i></button>
                       </div>
                   </td>
                   </tr>
             <?php
-            }
+                }
+            //}
             ?>
 
                 </tbody>
@@ -148,7 +157,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
   </div>
   <!-- ./wrapper -->
-  
+
   <!-- REQUIRED SCRIPTS -->
   
   <!-- jQuery -->
@@ -177,6 +186,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="../views/dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
+     $(document).on("click", "#btnActu" , function (){
+      
+    var id =$(this).data('legajo');
+    console.log(id);
+    $("#txtlegajo").val(id);
+  });
+
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -192,13 +208,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
       "responsive": true,
     });
   });
+
+ 
 </script>
 
-
+<?php
+include("../views/Tablas_Ref/opciones/new-calificacion.php");
+include("../views/Tablas_Ref/opciones/edit-calificacion.php");
+?>
 
 </body>
 
 
 
 </html>
-views/

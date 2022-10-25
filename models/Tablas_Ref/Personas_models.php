@@ -39,7 +39,7 @@ Class Persona{
     }*/
 
     public function get_Persona(){
-        $datos = mysqli_query($this->conn,"SELECT P.dni, P.nombre, Ps.nombre_puesto, P.status FROM persona as P, puesto as Ps WHERE P.puesto_id = Ps.id_puesto");
+        $datos = mysqli_query($this->conn,"SELECT P.dni, P.nombre,P.apellido, Ps.nombre_puesto,P.fecha_ingreso, P.status FROM persona as P, puesto as Ps WHERE P.puesto_id = Ps.id_puesto");
             $this->persona_arr = $datos;
         ($this->conn)->close();     
         

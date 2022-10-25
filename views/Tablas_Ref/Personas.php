@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Starter</title>
+  <title>Personas</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -72,6 +72,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <th>DNI</th>
                     <th>Nombre y Apellido</th>
                     <th>Puesto</th>
+                    <th>Fecha ingreso</th>
                     <th class="not-export-column htestado">Estado</th>
                     <th class="not-export-column">Acciones</th>
                   </tr>
@@ -79,11 +80,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <tbody>
 <?php
 while($row = $arr->fetch_assoc()){
+
 ?>     
                     <tr>
                       <td><?php echo $row['dni'] ?></td>
-                      <td><?php echo $row['nombre'] ?></td>
+                      <td><?php echo $row['nombre']." ".$row['apellido'] ?></td>
                       <td><?php echo $row['nombre_puesto'] ?></td>
+                      <td><?php echo date("d-m-Y", strtotime($row['fecha_ingreso'])); ?></td>
                       <td class="estado col-1 "> 
                         <span class="badge badge-success">Activo</span>
                       </td>
@@ -103,6 +106,7 @@ while($row = $arr->fetch_assoc()){
                   <tr>
                     <th>DNI</th>
                     <th>Nombre y Apellido</th>
+                    <th>Puesto</th>
                     <th>Puesto</th>
                     <th>Estado/th>
                     <th>Accion</th>
@@ -182,8 +186,8 @@ while($row = $arr->fetch_assoc()){
 
 <?php
 
-include("../views/Tabla_Ref/opciones/new-persona.php");
-include("../views/Tabla_Ref/opciones/edit-persona.php");
+include("../views/Tablas_Ref/opciones/new-persona.php");
+include("../views/Tablas_Ref/opciones/edit-persona.php");
 ?>
 
 </body>
