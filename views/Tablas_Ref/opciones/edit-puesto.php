@@ -2,7 +2,7 @@
 <div class="modal-dialog modal-dialog-centered" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Puesto</h5>
+      <h5 class="modal-title" id="exampleModalLongTitle">EditarPuesto</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -15,22 +15,25 @@
             
 
 
-              
+                  <div class="form-group">
+                    <label class="control-label">ID Puesto</label>
+                    <input class="form-control" type="number" id="txtidpuesto" name="idpuesto" >
+                  </div>
     
                   <div class="form-group">
                     <label class="control-label">Nombre Puesto</label>
-                    <input class="form-control" type="text" id="txtnombre" name="txtnombre" placeholder="nombre" required="">
+                    <input class="form-control" type="text" id="txtnombre" name="newnombre" placeholder="nombre">
                   </div>
       
                 
                 <div class="form-group">
                       <label for="exampleSelect1">Experiencia Requerida</label>
-                      <select class="form-control" id="liststatus" name="listsector" required="">
-                        <option value="1">Logistica</option>
-                        <option value="2">Marketing</option>
-                        <option value="3">Ventas</option>
-                        <option value="5">RRHH</option>
-                        <option value="6">Gestion</option>
+                      <select class="form-control" id="liststatus" name="newexp">
+                        <option value="1">0 a 1 año</option>
+                        <option value="2">1 a 2 años</option>
+                        <option value="3">2 a 3 años</option>
+                        <option value="4">3 a 4 años</option>
+                        <option value="5">4 a 5 años</option>               
                       </select>
                   </div>
                 
@@ -40,15 +43,11 @@
                   <label for="exampleSelect1">ctrl + click </label>
                   <div class="form-group">
                         <label>Habilidades</label>
-                        <select multiple class="custom-select">
+                        <select multiple class="custom-select" name="newhabil[]">
                           <?php
-                          while($row = $arr2->fetch_assoc()){
+                          while($row = $arr3->fetch_assoc()){
                             
-                          ?>
-                          <option><?php echo $row['nombre_habilidad'] ?></option>
-                          
-                          
-                          <?php
+                            echo "<option value=".$row["id_habilidad"].">".$row["nombre_habilidad"]."</option>";    
                           }
                           ?>
                         </select>
@@ -63,29 +62,28 @@
                     <!-- radio -->
                     <div class="form-group">
                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox">
+                          <input class="form-check-input" type="checkbox" name="visual">
                           <label class="form-check-label">Examen visual</label>
                         </div>
                     
                     
                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox">
+                          <input class="form-check-input" type="checkbox" name="fisica">
                           <label class="form-check-label">Evaluacion fisica</label>
                         </div>
                     </div>
                   </div>
-         
               
               <div class="col-4">      
               <div class="form-group">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox">
+              <div class="form-check">
+                          <input class="form-check-input" type="checkbox" name="alergia">
                           <label class="form-check-label">Alergias</label>
                         </div>
                     
               
                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox">
+                          <input class="form-check-input" type="checkbox" name="lesione">
                           <label class="form-check-label">Lesiones</label>
                         </div>
                     </div>
@@ -93,13 +91,13 @@
 
              <div class="col-5">      
               <div class="form-group">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox">
+                       <div class="form-check">
+                          <input class="form-check-input" type="checkbox" name="cardio">
                           <label class="form-check-label">Problemas cardiacos</label>
                         </div>
                     
                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox">
+                          <input class="form-check-input" type="checkbox" name="psicofisico">
                           <label class="form-check-label">Examen Psicofisico</label>
                         </div>
                     </div>

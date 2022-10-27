@@ -19,13 +19,13 @@
               <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label">DNI</label>
-                    <input class="form-control" type="number" id="txtdni" name="txtdni" placeholder="ingresa el DNI" required="">
+                    <input class="form-control" type="number" id="txtdni" name="dni" placeholder="ingresa el DNI" required="">
                   </div>
                 </div> 
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label class="control-label">Nombre</label>
-                    <input class="form-control" type="text" id="txtnombre" name="txtnombre" placeholder="nombre" required="">
+                    <input class="form-control" type="text" id="txtnombre" name="nombre_p" placeholder="nombre" required="">
                   </div>
                 </div>
               </div>
@@ -33,7 +33,7 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label class="control-label">Apellido</label>
-                    <input class="form-control" type="text" id="txtdescripcion" name="txtapellido" rows="2" placeholder="apellido" required="">
+                    <input class="form-control" type="text" id="txtdescripcion" name="apellido_p" rows="2" placeholder="apellido" required="">
                   </div>
                 </div>    
             
@@ -41,7 +41,7 @@
                <div class="col-sm-6">
                   <div class="form-group">
                       <label class="control-label">Email</label>
-                      <input class="form-control" type="mail" id="txtdescripcion" name="txtemail" rows="2" placeholder="ingresa el email" required="">
+                      <input class="form-control" type="mail" id="txtdescripcion" name="email" rows="2" placeholder="ingresa el email" required="">
                     </div>
                </div> 
               </div>
@@ -50,20 +50,20 @@
                <div class="col-3">    
                     <div class="form-group">
                       <label class="control-label">Teléfono</label>
-                      <input class="form-control" type="number" id="txttelefono" name="txttel" rows="2" placeholder="Teléfono" required="">
+                      <input class="form-control" type="number" id="txttelefono" name="tel" rows="2" placeholder="Teléfono" required="">
                     </div>
                </div>
          
               <div class="col-4">  
                   <div class="form-group">
                       <label class="control-label">Direccion</label>
-                      <input class="form-control" type="text" id="dir" name="txtdir" rows="2" placeholder="Direccion" required="">
+                      <input class="form-control" type="text" id="dir" name="direc" rows="2" placeholder="Direccion" required="">
                     </div>
               </div>
               <div class="col-5">      
                   <div class="form-group">
                       <label class="control-label">Fecha de nacimiento</label>
-                      <input class="form-control" type="date" id="fecha_nac" name="txtfecha_nac" rows="2" placeholder="ingresa la Fecha de nacimiento" required="">
+                      <input class="form-control" type="date" id="fecha_nac" name="fecha_nac" rows="2" placeholder="ingresa la Fecha de nacimiento" required="">
                     </div>
               </div>
              </div>

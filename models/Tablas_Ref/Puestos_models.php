@@ -43,12 +43,11 @@ public function insertarPsi(){
     $this->conn = Conexion::conectar();
     $arrPsi = $this->psicofisico_puesto;
     $prom = array_count_values($arrPsi);
-    print_r($prom);
-    print_r($arrPsi);
+
     if($prom[0] > $prom[1]){
-        $sql = mysqli_query($this->conn,"INSERT INTO psicofisico_puesto(`examen_visual`, `evalucion_fisica`, `alergia`, `lesiones`, `problema_cardiaco`, `examen_psicofisico`, `diagnostico`) VALUES (".$arrPsi[0].",".$arrPsi[1].",".$arrPsi[2].",".$arrPsi[3].",".$arrPsi[4].",".$arrPsi[5].",".$prom[0].")");
+        $sql = mysqli_query($this->conn,"INSERT INTO psicofisico_puesto(`examen_visual`, `evalucion_fisica`, `alergia`, `lesiones`, `problema_cardiaco`, `examen_psicofisico`, `diagnostico`) VALUES (".$arrPsi[0].",".$arrPsi[1].",".$arrPsi[2].",".$arrPsi[3].",".$arrPsi[4].",".$arrPsi[5].",0)");
     }else{
-        $sql = mysqli_query($this->conn,"INSERT INTO psicofisico_puesto(`examen_visual`, `evalucion_fisica`, `alergia`, `lesiones`, `problema_cardiaco`, `examen_psicofisico`, `diagnostico`) VALUES (".$arrPsi[0].",".$arrPsi[1].",".$arrPsi[2].",".$arrPsi[3].",".$arrPsi[4].",".$arrPsi[5].",".$prom[1].")");
+        $sql = mysqli_query($this->conn,"INSERT INTO psicofisico_puesto(`examen_visual`, `evalucion_fisica`, `alergia`, `lesiones`, `problema_cardiaco`, `examen_psicofisico`, `diagnostico`) VALUES (".$arrPsi[0].",".$arrPsi[1].",".$arrPsi[2].",".$arrPsi[3].",".$arrPsi[4].",".$arrPsi[5].",1)");
     }
     if ($sql = true) {
         echo "<script> alert('Se inserto un nuevo psico')</script>";
@@ -65,20 +64,17 @@ public function insertarPsi(){
 public function insertarPuesto($id){
     $this->conn = Conexion::conectar();
     $arrHab = $this->habilidad_puesto;
+    $name_p = $this->nombre_puesto; 
     $hab_val = "";
     $hab_key = "";
+    
+
     for($i = 0; $i < count($arrHab);$i++){
         $hab_val = $hab_val.",".$arrHab[$i]; 
         $hab_key = $hab_key.", `h".($i+1)."`";
     }
-    $hab_key = '`experiencia_nivel`, `psicofisico_puesto_id`, `nombre_puesto`'.$hab_key;
-    $hab_val = $this->exp_puesto.",".$id.",".$this->nombre_puesto.$hab_val;
-    
-    echo "<br>".$hab_val."<br>";
-    echo $hab_key."<br>";
-echo "INSERT INTO puesto (".$hab_key.") VALUES (".$hab_val.")";
 
-    $sql = mysqli_query($this->conn,"INSERT INTO puesto (".$hab_key.") VALUES (".$hab_val.")");
+    $sql = mysqli_query($this->conn,"INSERT INTO `puesto` (`experiencia_nivel`, `psicofisico_puesto_id`, `nombre_puesto`, `status_puesto`".$hab_key.") VALUES (".$this->exp_puesto.",".$id.",'".$name_p."',1".$hab_val.")");
     if ($sql = true) {
         echo "<script> alert('Se inserto un nuevo puesto')</script>";
 
@@ -88,6 +84,68 @@ echo "INSERT INTO puesto (".$hab_key.") VALUES (".$hab_val.")";
     }
     ($this->conn)->close(); 
 
+}
+
+
+public function ModfPsi($idpuesto){
+    $this->conn = Conexion::conectar();
+    $arrPsi = $this->psicofisico_puesto;
+    $prom = array_count_values($arrPsi);
+    $sql_id = mysqli_query($this->conn,"SELECT psicofisico_puesto_id FROM puesto WHERE id_puesto = $idpuesto;");
+    $sql_id = $sql_id->fetch_assoc();
+    echo "paso algo";
+    if($prom[0] > $prom[1]){
+        $sql = mysqli_query($this->conn,"UPDATE `psicofisico_puesto` SET `examen_visual`=".$arrPsi[0].",`evalucion_fisica`=".$arrPsi[1].",`alergia`=".$arrPsi[2].",`lesiones`=".$arrPsi[3].",`problema_cardiaco`=".$arrPsi[4].",`examen_psicofisico`=".$arrPsi[5].",`diagnostico`='0' WHERE id_ps_puesto =".$sql_id['psicofisico_puesto_id']."");
+    }else{
+        $sql = mysqli_query($this->conn,"UPDATE `psicofisico_puesto` SET `examen_visual`='".$arrPsi[0]."',`evalucion_fisica`='".$arrPsi[1]."',`alergia`='".$arrPsi[2]."',`lesiones`='".$arrPsi[3]."',`problema_cardiaco`='".$arrPsi[4]."',`examen_psicofisico`='".$arrPsi[5]."',`diagnostico`='1' WHERE id_ps_puesto =".$sql_id['psicofisico_puesto_id']."");
+    }
+    if ($sql = true) {
+        echo "<script> alert('Se Modifico un nuevo psico')</script>";
+
+    }else {
+        echo "Error al insertar psicofisico: " . mysqli_error($sql);
+    
+    }
+   
+    ($this->conn)->close(); 
+}
+
+//MODIFICAR PUESTO ..........
+
+public function ModfPuesto($id){
+    $this->conn = Conexion::conectar();
+    $arrHab = $this->habilidad_puesto;
+    $name_p = $this->nombre_puesto; 
+    $arr_sql_hab = "";
+
+    for($i = 0; $i < count($arrHab);$i++){
+        $arr_sql_hab = $arr_sql_hab.",`h".($i+1)."` = ".$arrHab[$i];
+    }
+//echo "UPDATE `puesto` SET `experiencia_nivel`=".$this->exp_puesto.",`nombre_puesto`='".$name_p."'".$arr_sql_hab." WHERE id_puesto = ".$id."";
+    
+    $sql = mysqli_query($this->conn,"UPDATE `puesto` SET `experiencia_nivel`=".$this->exp_puesto.",`nombre_puesto`='".$name_p."',`status_puesto` = 1".$arr_sql_hab." WHERE id_puesto = ".$id."");
+
+    if ($sql = true) {
+        echo "<script> alert('Se Modifico un nuevo puesto')</script>";
+
+    }else {
+        echo "Error al insertar puesto: " . mysqli_error($sql);
+    
+    }
+    ($this->conn)->close();
+}
+
+public function ElimPuesto($id){
+    $this->conn = Conexion::conectar();
+    $sql = mysqli_query($this->conn,"UPDATE `puesto` SET `status_puesto`= 0 WHERE id_puesto =".$id."");
+    if ($sql = true) {
+        echo "<script> alert('Se Elimino un nuevo puesto')</script>";
+
+    }else {
+        echo "Error al Eliminar puesto: " . mysqli_error($sql);
+    
+    }
+    ($this->conn)->close();
 }
 
 

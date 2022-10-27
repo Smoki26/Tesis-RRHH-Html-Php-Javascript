@@ -19,13 +19,13 @@
     
                   <div class="form-group">
                     <label class="control-label">Nombre Puesto</label>
-                    <input class="form-control" type="text" id="txtnombre" name="newnombre" placeholder="nombre" required="">
+                    <input class="form-control" type="text" id="txtnombre" name="newnombre" placeholder="nombre">
                   </div>
       
                 
                 <div class="form-group">
                       <label for="exampleSelect1">Experiencia Requerida</label>
-                      <select class="form-control" id="liststatus" name="newexp" required="">
+                      <select class="form-control" id="liststatus" name="newexp">
                         <option value="1">0 a 1 año</option>
                         <option value="2">1 a 2 años</option>
                         <option value="3">2 a 3 años</option>
@@ -40,7 +40,7 @@
                   <label for="exampleSelect1">ctrl + click </label>
                   <div class="form-group">
                         <label>Habilidades</label>
-                        <select multiple class="custom-select" name="newhabil[]" required="" >
+                        <select multiple class="custom-select" name="newhabil[]" >
                           <?php
                          
                           while($row = $arr2->fetch_assoc()){

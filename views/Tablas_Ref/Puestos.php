@@ -52,7 +52,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <section class="content">
     <div>
       <h1>&nbsp;&nbsp;<i class="fa fa fa-users"></i> Puestos &nbsp;
-        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalFormNuevoPuesto"><i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo</button>
+        <button class="btn btn-primary" type="button" name="btn-new" data-toggle="modal" data-target="#modalFormNuevoPuesto"><i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo</button>
 
       </h1>
       <br>
@@ -90,8 +90,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <td class="col-1"> 
                       <div>
                         <!-- <button class="btn btn-secondary btn-xs btnPermisosRol" rl="'1'" title="Permisos" type="button" data-toggle="modal" data-target="#modalFormActualizarPersona"><i class="fa fa-unlock-alt"></i></button> -->
-                        <button class="btn btn-primary btn-xs btnEditRol" rl="'1'" title="Editar" type="button" data-toggle="modal" data-target="#modalFormActualizarPuesto"><i class="fa fa-pencil-alt"></i></button>
-                        <button class="btn btn-danger btn-xs btnDelRol" rl="'1'" title="Eliminar"><i class="fa fa-trash"></i></button>
+                        <button class="btn btn-primary btn-xs btnEditRol" id="btnActu" rl="'1'" title="Editar" type="button" data-toggle="modal" data-id=<?php echo $row['id_puesto'] ?> data-target="#modalFormActualizarPuesto"><i class="fa fa-pencil-alt"></i></button>
+                        <a href="Puestos_controll.php?id_elim=<?php echo $row['id_puesto'] ?>"><button class="btn btn-danger btn-xs btnDelRol" rl="'1'" title="Eliminar"><i class="fa fa-trash"></i></button></a>
                       </div>
                   </td>
                   </tr>
@@ -163,6 +163,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="../views/dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
+   $(document).on("click", "#btnActu" , function (){
+      
+      var id =$(this).data('id');
+      console.log(id);
+      $("#txtidpuesto").val(id);
+    });
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,

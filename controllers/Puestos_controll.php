@@ -4,9 +4,17 @@ require_once("../models/Tablas_Ref/Puestos_models.php");
 $pues = new Puesto();
 $arr = $pues->get_Puesto();
 $arr2 = $pues->get_Hab();
+$arr3= $pues->get_Hab();
 
 $name;$exper;$habil;
 $psi = array();
+
+if($_REQUEST['id_elim']){
+    $nuevoPuesto = new Puesto();
+    $nuevoPuesto->ElimPuesto($_REQUEST['id_elim']);
+    
+}
+
 
 if(empty($_POST["newnombre"]) and empty($_POST["newexp"]) and empty($_POST['newhabil'])){
 
@@ -50,12 +58,20 @@ if(isset($_POST["newnombre"],$_POST["newexp"],$_POST['newhabil'])){
     }else{
         $psi[5] = 0;
     }
-    $nuevoPuesto = new Puesto($name,$exper,$habil,$psi);
-    $aux = $nuevoPuesto->insertarPsi();
-    $id_psi = $aux->fetch_assoc();
-    $nuevoPuesto->insertarPuesto($id_psi['id_ps_puesto']);
+    if(empty($_POST['idpuesto'])){
+        //$nuevoPuesto = new Puesto($name,$exper,$habil,$psi);
+        //$aux = $nuevoPuesto->insertarPsi();
+        //$id_psi = $aux->fetch_assoc();
+        //$nuevoPuesto->insertarPuesto($id_psi['id_ps_puesto']);
+        echo "no paso";
+    }else{
+        $nuevoPuesto = new Puesto($name,$exper,$habil,$psi);
+        $nuevoPuesto->ModfPsi($_POST['idpuesto']);
+        $nuevoPuesto->ModfPuesto($_POST['idpuesto']);
+    }
 }
 }
+
 
 require_once("../views/Tablas_Ref/Puestos.php");
 ?>
