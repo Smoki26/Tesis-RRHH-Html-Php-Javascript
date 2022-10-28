@@ -9,7 +9,7 @@ $arr3= $pues->get_Hab();
 $name;$exper;$habil;
 $psi = array();
 
-if($_REQUEST['id_elim']){
+if(isset($_REQUEST['id_elim'])){
     $nuevoPuesto = new Puesto();
     $nuevoPuesto->ElimPuesto($_REQUEST['id_elim']);
     

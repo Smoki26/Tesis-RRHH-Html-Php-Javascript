@@ -71,7 +71,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <thead>
                 <tr>
                   <th>ID Puesto</th>
-                  <th>Cantidad de empleados</th>
+                  <th>nombre del puesto</th>
                   <th>Experiencia Requerida:</th>
                   <th>Habilidad Principal</th>
                   <th class="not-export-column">Acciones</th>
@@ -84,8 +84,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 ?>     
                   <tr>
                     <td><?php echo $row['id_puesto'] ?></td>
-                    <td><?php echo $row['total'] ?></td>
                     <td><?php echo $row['nombre_puesto'] ?></td>
+                    <td><?php echo $row['rango_exp'] ?></td>
                     <td><?php echo $row['nombre_habilidad'] ?></td>
                     <td class="col-1"> 
                       <div>

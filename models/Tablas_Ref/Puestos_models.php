@@ -23,7 +23,7 @@ public function __construct($nombre_puesto="N/A",$exp_puesto="N/A",$habilidad_pu
 
 public function get_Puesto(){
     $this->conn = Conexion::conectar();
-    $sql = mysqli_query($this->conn,"SELECT Pu.id_puesto ,count(P.puesto_id) as total, Pu.nombre_puesto, H.nombre_habilidad FROM puesto as Pu, persona as P, habilidad as H WHERE Pu.id_puesto = P.puesto_id and H.id_habilidad = Pu.H1 GROUP BY Pu.nombre_puesto");
+    $sql = mysqli_query($this->conn,"SELECT Pu.id_puesto , Pu.nombre_puesto, Ex.rango_exp, H.nombre_habilidad FROM puesto as Pu, experiencia as Ex, habilidad as H WHERE Pu.experiencia_nivel = Ex.nivel and H.id_habilidad = Pu.H1");
     $this->datos = $sql;
     ($this->conn)->close();     
     
