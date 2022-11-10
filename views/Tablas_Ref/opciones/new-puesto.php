@@ -117,7 +117,7 @@
                   </div>-->
               <!-- botones -->  
               <div class="tile-footer">
-                <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Guardar</button>&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-primary" name="btn_new_puesto" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Guardar</button>&nbsp;&nbsp;&nbsp;
 
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
                     <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar

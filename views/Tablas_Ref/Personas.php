@@ -92,9 +92,9 @@ while($row = $arr->fetch_assoc()){
                       </td>
                       <td class="col-1"> 
                         <div>
-                          <!-- <button class="btn btn-secondary btn-xs btnPermisosRol" rl="'1'" title="Permisos" type="button" data-toggle="modal" data-target="#modalFormActualizarPersona"><i class="fa fa-unlock-alt"></i></button> -->
                           <button class="btn btn-primary btn-xs btnEditRol" rl="'1'" title="Editar" type="button" data-toggle="modal" data-target="#modalFormActualizarPersona"><i class="fa fa-pencil-alt"></i></button>
-                          <button class="btn btn-danger btn-xs btnDelRol" rl="'1'" title="Eliminar"><i class="fa fa-trash"></i></button>
+                          <!--<button class="btn btn-success btn-xs btnEditRol" rl="'1'" id="btnPsico" title="Agregar Psicofisico" type="button" data-toggle="modal" data-id=<?php //echo $row['dni'] ?> data-target="#modalFormNewPsicofisico"><i class="fa fa-cross"></i></button>-->
+                          <a href="Personas_controll.php?id_elim= <?php echo $row['dni']?>"><button class="btn btn-danger btn-xs btnDelRol" rl="'1'" title="Eliminar"><i class="fa fa-trash"></i></button></a>
                         </div>
                     </td>
                     </tr>
@@ -165,6 +165,12 @@ while($row = $arr->fetch_assoc()){
 <script src="../views/dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
+   $(document).on("click", "#btnPsico" , function (){
+      
+      var id =$(this).data('id');
+      console.log(id);
+      $("#txtdni_pers").val(id);
+    });
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -188,6 +194,7 @@ while($row = $arr->fetch_assoc()){
 
 include("../views/Tablas_Ref/opciones/new-persona.php");
 include("../views/Tablas_Ref/opciones/edit-persona.php");
+include("../views/Tablas_Ref/opciones/new-psicofisico.php");
 ?>
 
 </body>

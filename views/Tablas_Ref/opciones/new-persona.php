@@ -50,7 +50,7 @@
                <div class="col-3">    
                     <div class="form-group">
                       <label class="control-label">Teléfono</label>
-                      <input class="form-control" type="number" id="txttelefono" name="tel" rows="2" placeholder="Teléfono" required="">
+                      <input class="form-control" type="tel" id="txttelefono" name="tel" rows="2" placeholder="Teléfono" required="">
                     </div>
                </div>
          
@@ -74,19 +74,7 @@
              <!--  Puestos   datos  -->
 
              <div class="row">
-              <div class="col-sm-6">
-                  <div class="form-group">
-                      <label for="exampleSelect1">Sector</label>
-                      <select class="form-control" id="liststatus" name="listsector" required="">
-                        <option value="1">Compra</option>
-                        <option value="2">Ventas</option>
-                        <option value="3">Producción</option>
-                        <option value="4">Marketing</option>
-                        <option value="5">RRHH</option>
-                        <option value="4">Depósito</option>
-                      </select>
-                  </div>
-               </div>
+              
                
                <div class="col-sm-6">
                 <div class="form-group">
@@ -94,102 +82,93 @@
                     <select class="form-control" id="liststatus" name="listpuesto" required="">
                   <?php
                   while($row = $arr2->fetch_assoc()){               
-                  ?>     
-                    <option value="1"><?php echo $row['nombre_puesto'];?></option>
-                    <?php
+                    
+                    echo "<option value=".$row["id_puesto"].">".$row["nombre_puesto"]."</option>"; 
                     }
                     ?>
                     </select>
                 </div>
                </div>
+               <div class="col-sm-6">
+               <div class="form-group">
+                      <label for="exampleSelect1">Experiencia</label>
+                      <select class="form-control" id="liststatus" name="newexp">
+                        <option value="1">0 a 1 año</option>
+                        <option value="2">1 a 2 años</option>
+                        <option value="3">2 a 3 años</option>
+                        <option value="4">3 a 4 años</option>
+                        <option value="5">4 a 5 años</option>               
+                      </select>
+                  </div>
+                </div> 
               </div>
             
               
-            <div class="row">
-              <!-- select -->
-             <div class="col-sm-6">
-              <div class="form-group">
-                  <label for="exampleSelect1">Estado</label>
-                  <select class="form-control" id="liststatus" name="liststatus" required="">
-                    <option value="1">Activo</option>
-                    <option value="0">Inactivo</option>
-                    
-                  </select>
-               </div>
-              </div>
-            
-
-            
-            <div class="col-sm-6">      
-                  <div class="form-group">
-                      <label class="control-label">Fecha de ingreso</label>
-                      <input class="form-control" type="date" id="fecha_nac" name="txtfecha_ing" rows="2" placeholder="ingresa la Fecha de nacimiento" required="">
-                    </div>
-              </div>
-             </div>
-             
+          
           
             <hr>
 
             <div class="row">
-            <div class="col-3"> 
+            
+            <div class="col-sm-6">
+
+                      <div class="form-group">
+                            <label>Habilidades (ctrl + click)</label>
+                            <select multiple class="custom-select" name="newhabil[]" >
+                              <?php
+                            
+                              while($row = $arr3->fetch_assoc()){
+                            
+                              echo "<option value=".$row["id_habilidad"].">".$row["nombre_habilidad"]."</option>";                         
+                            
+                              }
+                    
+                              ?>
+                            </select>
+                          </div>
+                    </div>
+
+            <div class="col-sm-6"> 
                   <div class="form-group">
+                  <label>Estudios finallizados</label>
                       <div class="form-check">
-                      <input class="form-check-input" type="checkbox">
+                      <input class="form-check-input" type="checkbox" name="primaria">
                       <label class="form-check-label">Primaria</label>
                       </div>
                       <div class="form-check">
-                      <input class="form-check-input" type="checkbox">
+                      <input class="form-check-input" type="checkbox" name="secundaria">
                       <label class="form-check-label">Secundaria</label>
                       </div>
                       <div class="form-check">
-                      <input class="form-check-input" type="checkbox">
+                      <input class="form-check-input" type="checkbox" name="ter_univ">
                       <label class="form-check-label">Terc/Univer</label>
                       </div>
                   </div>
             </div>
-              <div class="col-4">
-              <div class="form-group">
-                      <label class="control-label">Cursos Activos</label>
-                      <input class="form-control" type="text" id="fecha_nac" name="txtdescripcion" rows="2" placeholder="Cursos Ac" required="">
+            </div>
+            <div class="row">
+            <div class="col-sm-6">
+                    <div class="form-group">                 
+                    <label class="control-label">Cursos Activos</label>
+                    <textarea class="form-control" name="cursos" rows="3" placeholder="Enter ..." style="resize: none;"></textarea>
                     </div>
               </div>
-              <div class="col-5">
+              
+
+              <div class="col-sm-6">
               <div class="form-group">
                       <label class="control-label">Titulos</label>
-                      <input class="form-control" type="text" id="fecha_nac" name="txtdescripcion" rows="2" placeholder="Titulos" required="">
+                      <textarea class="form-control" name="titulos" rows="3" placeholder="Enter ..." style="resize: none;"></textarea>
                     </div>
               </div>
             </div>
 
-            <div class="row">
-                  <div class="col-sm-6">
-                      <!-- textarea -->
-                      <div class="form-group">
-                        <label>Experiencias</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <!-- textarea -->
-                      <div class="form-group">
-                        <label>Habilidades</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                      </div>
-                    </div>
-            </div>  
-            <!--<div class="form-group">
-                      <label for="exampleSelect1">Sexo</label>
-                      <select class="form-control" id="liststatus" name="liststatus" required="">
-                        <option value="1">Masculino</option>
-                        <option value="0">Femenino</option>
-                        
-                      </select>
-                      
-                  </div>-->
+      
+                              
+          <hr>
               <!-- botones -->  
               <div class="tile-footer">
-                <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Guardar</button>&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-primary" name="btn_new_pers" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Guardar</button>&nbsp;&nbsp;&nbsp;
 
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
                     <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar

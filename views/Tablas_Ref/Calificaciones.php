@@ -50,7 +50,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <section class="content">
     <div>
     <h1>&nbsp;&nbsp;<i class="fa fa fa-users"></i> Calificaciones &nbsp;
-      <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalFormNuevoCalf"><i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo</button>
+      <button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#modalFormNuevoCalf"><i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo</button>
 
     </h1>
     <br>
@@ -78,60 +78,66 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tbody>
 
                 <?php
-                
+                          
                 while($row = $arr->fetch_assoc()){
             
                 ?>
 
                 <?php
                   
-                  $aux_parte;
-                  //foreach($row_est as $k => $v){
-                    ?>
-                  <tr>
-                    <td><?php echo $row['legajo_id_legajo'] ?></td>
+                  $aux_parte = array();
+                  $i = 0;
+    
+                  foreach($row as $v){
+                   
+                      if($v <= 2.50){
+                        $aux_parte[$i] = "badge badge-danger";
+                      }else if($v > 2.50 && $v < 3.50){
+                        $aux_parte[$i] = "badge badge-warning";
+                      }else if($v> 3.50){
+                        $aux_parte[$i] = "badge badge-success";
+                      }
+                    $i++;
+                    
+                  
+                  }
+
+                  echo '<tr>
+                    <td>'.$row['legajo_id_legajo'].'</td>
                     <td >
-                        <span class="badge badge-success"style="margin-right: 10px;"><?php echo $row['puntualidad'] ?></span>
-                        <span class="badge badge-danger"style="margin-right: 10px;"><?php echo $row['cumplimiento_normas'] ?></span>
-                        <span class="badge badge-danger"style="margin-right: 10px;"><?php echo $row['aplicacion_procesos_trabajo'] ?></span>
-                        <span class="badge badge-success"style="margin-right: 10px;"><?php echo $row['presentacion_personal'] ?></span>
+                        <span class="'.$aux_parte[3].'" style="margin-right: 10px;"> Puntualidad </span>
+                        <span class="'.$aux_parte[6].'" style="margin-right: 10px;"> Cumplimiento normas </span>
+                        <span class="'.$aux_parte[7].'" style="margin-right: 10px;"> APT </span>
+                        <span class="'.$aux_parte[5].'" style="margin-right: 10px;"> Presentacion persoanal </span>
                     </td>
                     <td>
-                        <span class="badge badge-danger"style="margin-right: 10px;"><?php echo $row['compañerismo'] ?></span>
-                        <span class="badge badge-success"style="margin-right: 10px;"><?php echo $row['iniciativa'] ?></span>
-                        <span class="badge badge-success"style="margin-right: 10px;"><?php echo $row['responsabilidad'] ?></span>
+                        <span class="'.$aux_parte[4].'"style="margin-right: 10px;"> Compañerismo </span>
+                        <span class="'.$aux_parte[9].'"style="margin-right: 10px;"> Iniciativa</span>
+                        <span class="'.$aux_parte[8].'"style="margin-right: 10px;"> Responsabilidad </span>
                     </td>
-                    <td><span class="badge badge-warning"style="margin-right: 10px;"><?php echo $row['promedio'] ?></span></td>
+                    <td><span class="'.$aux_parte[10].'"style="margin-right: 10px;"> '.$row['promedio'].' </span></td>
                     <td class="col-1"> 
                       <div>
-                        <!-- <button class="btn btn-secondary btn-xs btnPermisosRol" rl="'1'" title="Permisos" type="button" data-toggle="modal" data-target="#modalFormActualizarPersona"><i class="fa fa-unlock-alt"></i></button> -->
-                        <button class="btn btn-primary btn-xs btnEditRol" id="btnActu" rl="'1'" title="Editar" type="button" data-toggle="modal" data-target="#modalFormActualizarCalf" data-legajo=<?php echo $row['legajo_id_legajo'] ?> ><i class="fa fa-pencil-alt"></i></button>
-                        <button class="btn btn-danger btn-xs btnDelRol" id="btnElim" rl="'1'" title="Eliminar"><i class="fa fa-trash"></i></button>
+                        <!-- <button class="btn btn-secondary btn-xs btnPermisosRol" rl="1" title="Permisos" type="button" data-toggle="modal" data-target="#modalFormActualizarPersona"><i class="fa fa-unlock-alt"></i></button> -->
+                        <button class="btn btn-primary btn-xs btnEditRol" id="btnActu" rl="1" title="Editar" type="button" data-toggle="modal" data-target="#modalFormActualizarCalf" data-legajo='. $row['legajo_id_legajo'] .'><i class="fa fa-pencil-alt"></i></button>
+                        <a href="Calificacion_controll.php?id_elim='.$row['legajo_id_legajo'].'"><button class="btn btn-danger btn-xs btnDelRol" id="btnElim" rl="1" title="Eliminar"><i class="fa fa-trash"></i></button></a>
                       </div>
                   </td>
-                  </tr>
-            <?php
-                }
-            //}
+                  </tr>';
+           
+                
+            }
             ?>
 
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>DNI</th>
-                  <th>Usuario</th>
-                  <th>Contraseña</th>
-                  <th>Estado</th>
-                  <th>Accion</th>
-                </tr>
-                </tfoot>
-                <tr>
-                    <th>ID Puesto</th>
-                    <th>Descripcion</th>
-                    <th>Experiencia Requerida:</th>
-                    <th>Habilidad Principal</th>
-                    <th>Acciones</th>
-                </tr>
+                    <th>Legajo</th>
+                    <th>Calf Principales</th>
+                    <th>Calf Secundarias</th>
+                    <th>Promedio</th>
+                    <th class="not-export-column">Acciones</th>
+                  </tr>
                 </tfoot>
                 </table>
               </div>

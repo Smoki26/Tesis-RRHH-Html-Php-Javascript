@@ -15,7 +15,7 @@ if(isset($_REQUEST['id_elim'])){
     
 }
 
-
+if(isset($_POST['btn_new_puesto']) or isset($_POST['btn_mod_puesto'])){
 if(empty($_POST["newnombre"]) and empty($_POST["newexp"]) and empty($_POST['newhabil'])){
 
     
@@ -59,10 +59,10 @@ if(isset($_POST["newnombre"],$_POST["newexp"],$_POST['newhabil'])){
         $psi[5] = 0;
     }
     if(empty($_POST['idpuesto'])){
-        //$nuevoPuesto = new Puesto($name,$exper,$habil,$psi);
-        //$aux = $nuevoPuesto->insertarPsi();
-        //$id_psi = $aux->fetch_assoc();
-        //$nuevoPuesto->insertarPuesto($id_psi['id_ps_puesto']);
+        $nuevoPuesto = new Puesto($name,$exper,$habil,$psi);
+        $aux = $nuevoPuesto->insertarPsi();
+        $id_psi = $aux->fetch_assoc();
+        $nuevoPuesto->insertarPuesto($id_psi['id_ps_puesto']);
         echo "no paso";
     }else{
         $nuevoPuesto = new Puesto($name,$exper,$habil,$psi);
@@ -71,7 +71,7 @@ if(isset($_POST["newnombre"],$_POST["newexp"],$_POST['newhabil'])){
     }
 }
 }
-
+}
 
 require_once("../views/Tablas_Ref/Puestos.php");
 ?>
